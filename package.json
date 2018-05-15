@@ -1,0 +1,17 @@
+{
+  "name": "email_apps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "danny oquinn",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "emailjs-imap-client": "^2.0.8",
+    "emailjs-smtp-client": "^1.0.0",
+    "say.js": "^1.2.0"
+  }
+}
