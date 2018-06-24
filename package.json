@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "chai": "^4.1.2",
+    "dotenv": "^5.0.1",
     "emailjs-imap-client": "^2.0.8",
     "emailjs-smtp-client": "^1.0.0",
     "say.js": "^1.2.0"

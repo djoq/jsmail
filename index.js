@@ -2,41 +2,33 @@
 let ImapClient = require('emailjs-imap-client');
 let SmtpClient = require('emailjs-smtp-client');
 
-let config = require('./config');
+let validateEnv = require('./validateEnv');
 
-const host = config('MAILHOST');
+const smtphost = validateEnv('MAILHOST');
+const imaphost = validateEnv('MAILHOST')
 const ports = {
 	imap: 993,
-	smtp: 587
+	smtp: 587 
 }
 
 const config = {
 	    auth: {
-	        user: config('USER'),
-	        pass: config('PASS')
-	    }
+	        user: validateEnv('USER'),
+	        pass: validateEnv('PASS')
+	    },
+            IgnoreTLS: false
 	}
 
-exports.smtp = () => {
-	var client = new SmtpClient(host, ports.smtp, config)
+exports.smtp = (() => { return  new SmtpClient(smtphost, ports.smtp, config);   })();
 
- 	return client
+exports.imap = (() => { return new ImapClient(imaphost, ports.imap, config); })();
 
-//	client.onidle = () => {
-//	 	console.log('smtp connection established')
-//	 }
-}
-
-exports.imap = () => {
-	client = new ImapClient(host, ports.imap, config);
-
-	return client
-}
 
 exports.connect = (client) => {
-	client.connect().then(() => { 
-		console.log('connected') 
-    });
+	return client.connect()
+        // .then(() => { 
+        //		console.log('connected') 
+        //  });
 }
 
 
